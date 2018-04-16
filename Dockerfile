@@ -1,23 +1,23 @@
-FROM node:8.9.4
+FROM node:9.11.1
 
 RUN mkdir /root/packer
-
 WORKDIR /root/packer
 
 RUN wget https://releases.hashicorp.com/packer/1.2.2/packer_1.2.2_linux_amd64.zip
 RUN wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
 
-RUN apt-get update
+#RUN apt-get update
+RUN yum update
 
 #RUN apt-get install unzip -y
 RUN yum install unzip -y
 RUN yum install wget -y
-RUN unzip packer_1.2.2_linux_amd64.zip -d /usr/local/bin/packer
-RUN unzip terraform_0.11.7_linux_amd64.zip -d /usr/local/bin/terraform
+RUN unzip packer_1.2.2_linux_amd64.zip -d /usr/local/bin
+RUN unzip terraform_0.11.7_linux_amd64.zip -d /usr/local/bin
 RUN rm packer_1.2.2_linux_amd64.zip
 RUN rm terraform_0.11.7_linux_amd64.zip
-RUN mkdir /root/git
 
+RUN mkdir /root/git
 WORKDIR /root/git
 
 # Install Git, from https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
